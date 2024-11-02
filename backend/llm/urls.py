@@ -1,6 +1,7 @@
-from django.urls import path
+# llm/urls.py
 
-from backend.llm.views import QuestionView, ConvertToPDFView
+from django.urls import path
+from llm.views import QuestionView, ConvertToPDFView  # 경로를 'llm.views'로 변경
 
 urlpatterns = [
     path('get_question/', QuestionView.as_view(), name='get_question'),
