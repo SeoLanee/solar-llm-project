@@ -4,10 +4,11 @@ import { KeyboardEvent, useState } from "react";
 
 interface FooterProps {
   onSubmit: (message: Message) => void;
+  onAddMessage: (message: Message) => void;
   disabled?: boolean;
 }
 
-const Footer = ({ onSubmit, disabled = false }: FooterProps) => {
+const Footer = ({ onSubmit, onAddMessage, disabled = false }: FooterProps) => {
   const [inputValue, setInputValue] = useState("");
   const [isComposing, setIsComposing] = useState(false);
 
@@ -19,6 +20,7 @@ const Footer = ({ onSubmit, disabled = false }: FooterProps) => {
     if (event.key === "Enter" && !event.shiftKey && !isComposing) {
       event.preventDefault();
       if (inputValue.trim()) {
+        onAddMessage({ isSender: true, content: inputValue });
         onSubmit({ isSender: true, content: inputValue });
         setInputValue("");
       }
@@ -26,7 +28,7 @@ const Footer = ({ onSubmit, disabled = false }: FooterProps) => {
   };
 
   return (
-    <footer className="fixed bottom-0 left-0 w-full p-4 shadow-md flex justify-center">
+    <footer className="fixed bottom-0 left-0 w-full p-4 shadow-md flex justify-center bg-black">
       <div className="w-[48rem]">
         <Textarea
           placeholder="답변을 입력해주세요."
