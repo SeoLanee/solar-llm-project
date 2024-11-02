@@ -10,11 +10,6 @@ from langchain_core.messages import AIMessage, HumanMessage
 # 환경 변수 로드
 load_dotenv()
 
-# API 초기 설정
-client = OpenAI(
-    api_key=os.environ["UPSTAGE_API_KEY"], base_url="https://api.upstage.ai/v1/solar"
-)
-
 llm = ChatUpstage()
 
 rag_with_history_prompt = ChatPromptTemplate.from_messages(
