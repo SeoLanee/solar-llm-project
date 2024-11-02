@@ -28,7 +28,7 @@ const ChatPage = () => {
   };
 
   return (
-    <div className="w-full py-[4rem] flex flex-col gap-[0.5rem]">
+    <div className="w-full pt-[6rem] pb-[7.5rem] flex flex-col gap-[0.5rem]">
       {messages.map((message, index) => {
         const isGeneateAvailable =
           index === messages.length - 1 && index !== 0 && !message.isSender;

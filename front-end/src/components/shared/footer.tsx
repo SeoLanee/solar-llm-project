@@ -26,7 +26,7 @@ const Footer = ({ onSubmit, disabled = false }: FooterProps) => {
   };
 
   return (
-    <footer className="fixed bottom-0 left-0 w-full p-4 shadow-md flex justify-center">
+    <footer className="fixed bottom-0 left-0 w-full p-4 shadow-md flex justify-center bg-black">
       <div className="w-[48rem]">
         <Textarea
           placeholder="답변을 입력해주세요."
