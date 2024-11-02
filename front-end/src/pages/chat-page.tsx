@@ -61,6 +61,7 @@ const ChatPage = () => {
       content: dummyData.answer[3],
     },
   ]);
+
   const handleAddMessage = (message: Message) => {
     setMessages([...messages, message]);
   };
@@ -69,11 +70,6 @@ const ChatPage = () => {
     setIsLoading(true);
     try {
       const response = await getQuestion(message.content);
-
-      // const currentMessage = {
-      //   isSender: true,
-      //   content: message.content,
-      // };
 
       const newMessage: Message = {
         isSender: false,
@@ -87,6 +83,7 @@ const ChatPage = () => {
       setIsLoading(false);
     }
   };
+
   const handleOpenPdf = () => {
     window.open("../assets/result.pdf", "_blank");
   };

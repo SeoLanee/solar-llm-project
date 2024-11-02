@@ -13,7 +13,7 @@ const TopBar = () => {
       }}
     >
       <div className="w-[48rem] flex justify-start">
-        <div className="text-xl">SSEOJO</div>
+        <div className="text-xl">SSeoJo</div>
       </div>
     </div>
   );
