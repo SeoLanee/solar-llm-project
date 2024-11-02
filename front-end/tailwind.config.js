@@ -53,6 +53,10 @@ export default {
           4: "hsl(var(--chart-4))",
           5: "hsl(var(--chart-5))",
         },
+        chatbox: {
+          DEFAULT: "rgb(51, 51, 51)",
+          foreground: "hsl(var(--foreground))",
+        },
       },
     },
   },
