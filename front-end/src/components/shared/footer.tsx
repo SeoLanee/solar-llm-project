@@ -4,10 +4,11 @@ import { KeyboardEvent, useState } from "react";
 
 interface FooterProps {
   onSubmit: (message: Message) => void;
+  onAddMessage: (message: Message) => void;
   disabled?: boolean;
 }
 
-const Footer = ({ onSubmit, disabled = false }: FooterProps) => {
+const Footer = ({ onSubmit, onAddMessage, disabled = false }: FooterProps) => {
   const [inputValue, setInputValue] = useState("");
   const [isComposing, setIsComposing] = useState(false);
 
@@ -19,6 +20,7 @@ const Footer = ({ onSubmit, disabled = false }: FooterProps) => {
     if (event.key === "Enter" && !event.shiftKey && !isComposing) {
       event.preventDefault();
       if (inputValue.trim()) {
+        onAddMessage({ isSender: true, content: inputValue });
         onSubmit({ isSender: true, content: inputValue });
         setInputValue("");
       }

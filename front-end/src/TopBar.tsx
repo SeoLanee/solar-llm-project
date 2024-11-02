@@ -12,7 +12,9 @@ const TopBar = () => {
         color: "white",
       }}
     >
-      <div>AAAA</div>
+      <div className="w-[48rem] flex justify-start">
+        <div className="text-xl">SSEOJO</div>
+      </div>
     </div>
   );
 };
