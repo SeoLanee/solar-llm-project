@@ -28,7 +28,11 @@ const ChatBox = ({
         <LighteningIcon className="w-6 h-6 min-w-6 min-h-6 mt-[1rem]" />
       ) : null}
       <div className="flex flex-col gap-[0.5rem]">
-        <div className={cn("bg-chatbox p-[1rem] rounded-2xl")}>{message}</div>
+        <div
+          className={cn("bg-chatbox p-[1rem] rounded-2xl whitespace-pre-wrap")}
+        >
+          {message}
+        </div>
         {isGeneateAvailable ? (
           <div className="flex w-full justify-start">
             <Button onClick={onGenerateClick}>
