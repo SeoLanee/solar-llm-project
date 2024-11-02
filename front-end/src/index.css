@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "./styles/font.css";
-
 * {
   box-sizing: border-box;
 }
