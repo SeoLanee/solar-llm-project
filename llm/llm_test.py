@@ -15,7 +15,7 @@ client = OpenAI(
 
 llm = ChatUpstage()
 
-rag_with_history_prompt = ChatPromptTemplate.from_messages(
+rag_with_history_prompt_query = ChatPromptTemplate.from_messages(
     [
         ("system", "You are a assistant for writing an technical document."), 
         ("system", "You ask some questions from given specifications, and write a document for it."),
@@ -24,6 +24,18 @@ rag_with_history_prompt = ChatPromptTemplate.from_messages(
         ("system", "Second, ask the field of document."),
         ("system", "Third, ask some questions need for write document. repeat till human say done."), 
         ("system", "Initial input is 'init'"),
+
+        MessagesPlaceholder(variable_name="history"),
+        
+        ("human", "{input}"),
+    ]
+)
+
+rag_with_history_prompt_report = ChatPromptTemplate.from_messages(
+    [
+        ("system", "You should write a report."),
+        ("system", "Answer me in markdown language."),
+        ("system", "businesslike, formal, official answers."),
 
         MessagesPlaceholder(variable_name="history"),
         
@@ -40,26 +52,22 @@ def query_mode(chain, question: str)-> str:
 
   return answer
 
-def report_mode(chain, question: str)-> str:
-  pass
+def report_mode(chain)-> str:
+  answer = chain.invoke({"history": history, "input": "지금까지 주고받은 내용을 기반으로 보고서를 길게 작성해줘"})
 
+  return answer
 
 history = []
 
-chain = rag_with_history_prompt | llm | StrOutputParser()
-answer = chain.invoke({"history": history, "input": "init"})
+query_chain = rag_with_history_prompt_query | llm | StrOutputParser()
+report_chain = rag_with_history_prompt_report | llm | StrOutputParser()
+answer = query_chain.invoke({"history": history, "input": "init"})
 print(answer)
 
-'''
-for i in range (0, 5):
-    user_input = input("Enter an input: ")
-    history.append(HumanMessage(user_input))
-    answer = chain.invoke({"history": history, "input": user_input})
-    history.append(AIMessage(answer))
-    print(answer)
-'''
-# print(history)
 
 for i in range(6):
   question=input()
-  print(query_mode(chain, question))
+  if question=='1':
+    print(report_mode(report_chain))
+  else:
+    print(query_mode(query_chain, question))
