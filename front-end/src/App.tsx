@@ -6,7 +6,7 @@ import "@/styles/reset.css";
 function App() {
   return (
     <MainLayout>
-      <div>gweagew</div>
+      <div></div>
     </MainLayout>
   );
 }
