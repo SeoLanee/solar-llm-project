@@ -33,8 +33,11 @@ rag_with_history_prompt_query = ChatPromptTemplate.from_messages(
 
 rag_with_history_prompt_report = ChatPromptTemplate.from_messages(
     [
-        ("system", "You should write a report."),
-        ("system", "Answer me in markdown language."),
+        ("system", "You are a assistant for writing an technical document."), 
+        ("system", "You should write a report in detail."),
+        ("system", "You should write in a report format."),
+        ("system", "You ask some questions from given specifications, and write a document for it."),
+        ("system", "Answer me in markdown language. Using ### like that"),
         ("system", "businesslike, formal, official answers."),
 
         MessagesPlaceholder(variable_name="history"),
@@ -53,7 +56,7 @@ def query_mode(chain, question: str)-> str:
   return answer
 
 def report_mode(chain)-> str:
-  answer = chain.invoke({"history": history, "input": "지금까지 주고받은 내용을 기반으로 보고서를 길게 작성해줘"})
+  answer = chain.invoke({"history": history, "input": "마크다운언어로 써야해. 지금까지 주고받은 내용을 기반으로 보고서를 길게 작성해줘. <마크다운 언어>로"})
 
   return answer
 
