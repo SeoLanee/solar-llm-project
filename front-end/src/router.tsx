@@ -1,5 +1,7 @@
 import { MainLayout } from "@/main-layout";
-import Home from "@/pages/home";
+import ChatPage from "@/pages/chat-page";
+import MainPage from "@/pages/main-page";
+
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -10,7 +12,8 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
       <Route element={<MainLayout />}>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<MainPage />} />
+        <Route path="/chat" element={<ChatPage />} />
       </Route>
     </Route>
   )
